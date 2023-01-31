@@ -20,6 +20,7 @@ main {
 }
 .icon {
   position: relative;
+  margin-right: 20px;
 }
 .iconspan {
   font-size: 14px;
@@ -61,6 +62,34 @@ main {
 }
 .img-thumbnail {
   height: 80px;
+}
+.logo {
+  font-family: 'Amita', cursive;
+  color: black;
+}
+#basic-nav-dropdown {
+  color: black;
+}
+.navbar-brand {
+  font-weight: bold;
+}
+.side-navbar {
+  width: 240px;
+  height: 100%;
+  position: absolute;
+  left: -300px;
+  background-color: #100901;
+  transition: 0.5s;
+}
+
+.site-container {
+  transition: 0.4s;
+}
+.active-cont {
+  margin-left: 240px;
+}
+.active-nav {
+  left: 0;
 }
 @media screen and (max-width: 991px) {
   .iconspan {

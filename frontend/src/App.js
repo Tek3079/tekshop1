@@ -9,7 +9,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Login from './pages/Login';
 import { Link } from 'react-router-dom';
 import { removeUser } from './redux/cartReducer';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ShippingAddressPage from './pages/ShippingAddressPage';
 import Signup from './pages/Signup';
@@ -19,6 +19,11 @@ import OrderPage from './pages/OrderPage';
 import Nav from 'react-bootstrap/Nav';
 import OrderHistoryPage from './pages/OrderHistoryPage';
 import ProfilePage from './pages/ProfilePage';
+import Button from 'react-bootstrap/Button';
+import { getError } from './util';
+import axios from 'axios';
+import SearchBox from './component/SearchBox';
+import { useEffect, useState } from 'react';
 
 function App() {
   let sum = 0;
@@ -29,23 +34,57 @@ function App() {
     dispatch(removeUser());
     window.location.href = '/signin';
   };
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get(`/api/products/categories`);
+        console.log(data);
+        setCategories(data);
+      } catch (err) {
+        toast.error(getError(err));
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   return (
     <BrowserRouter>
-      <div className="d-flex flex-column site-container">
+      <div
+        className={
+          sidebarIsOpen
+            ? 'd-flex flex-column site-container active-cont'
+            : 'd-flex flex-column site-container'
+        }
+      >
         <ToastContainer position="bottom-center" limit={1} />
         <header>
-          <Navbar bg="dark" variant="dark" expand="lg">
+          <Navbar bg="info" variant="dark" expand="lg">
             <Container>
+              <Button
+                variant="dark"
+                onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+              >
+                <i className="fas fa-bars"></i>
+              </Button>
               <LinkContainer to="/">
-                <Navbar.Brand>amazona</Navbar.Brand>
+                <Navbar.Brand>
+                  <h3 className="logo">T'shop</h3>
+                </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
+                <SearchBox />
                 <Nav className="me-auto  w-100  justify-content-end ">
                   <Link to="/cart" className="nav-link">
                     <div className="icon">
-                      <ShoppingCartOutlinedIcon />
+                      <ShoppingCartOutlinedIcon
+                        style={{ color: 'black' }}
+                        fontSize="large"
+                      />
                       <p className="iconspan">
                         {' '}
                         {products.forEach((item) => {
@@ -57,11 +96,7 @@ function App() {
                   </Link>
 
                   {user[0] ? (
-                    <NavDropdown
-                      className="text-primary"
-                      title={user[0].name}
-                      id="basic-nav-dropdown"
-                    >
+                    <NavDropdown title={user[0].name} id="basic-nav-dropdown">
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
@@ -87,7 +122,29 @@ function App() {
             </Container>
           </Navbar>
         </header>
-
+        <div
+          className={
+            sidebarIsOpen
+              ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
+              : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
+          }
+        >
+          <Nav className="flex-column text-white w-100 p-2">
+            <Nav.Item>
+              <strong>Categories</strong>
+            </Nav.Item>
+            {categories.map((category) => (
+              <Nav.Item key={category}>
+                <LinkContainer
+                  to={`/search?category=${category}`}
+                  onClick={() => setSidebarIsOpen(false)}
+                >
+                  <Nav.Link>{category}</Nav.Link>
+                </LinkContainer>
+              </Nav.Item>
+            ))}
+          </Nav>
+        </div>
         <main>
           <Container className="mt-3">
             <Routes>

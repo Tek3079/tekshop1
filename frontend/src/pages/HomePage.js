@@ -46,7 +46,7 @@ function HomePage() {
         <title>Amazona</title>
       </Helmet>
 
-      <div className="d-flex justify-content-center align-self-center bg-warning">
+      <div className="d-flex justify-content-center align-self-center bg-warning sale-div">
         <h1 className="text-danger  sale">SALE!</h1>
       </div>
 

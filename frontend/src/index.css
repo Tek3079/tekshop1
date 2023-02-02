@@ -78,7 +78,7 @@ main {
   height: 100%;
   position: absolute;
   left: -300px;
-  background-color: #100901;
+  background-color: #0dcaf0;
   transition: 0.5s;
 }
 
@@ -90,6 +90,15 @@ main {
 }
 .active-nav {
   left: 0;
+  color: black;
+}
+.text-bold {
+  font-weight: bold;
+}
+.sale {
+  letter-spacing: 60px;
+  font-size: 200px;
+  margin-left: 60px;
 }
 @media screen and (max-width: 991px) {
   .iconspan {

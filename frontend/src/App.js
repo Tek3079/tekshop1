@@ -24,12 +24,14 @@ import { getError } from './util';
 import axios from 'axios';
 import SearchBox from './component/SearchBox';
 import { useEffect, useState } from 'react';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   let sum = 0;
   const products = useSelector((state) => state.cart.products);
   const user = useSelector((state) => state.cart.users);
   const dispatch = useDispatch();
+
   const signoutHandler = () => {
     dispatch(removeUser());
     window.location.href = '/signin';
@@ -71,7 +73,7 @@ function App() {
                 <i className="fas fa-bars"></i>
               </Button>
               <LinkContainer to="/">
-                <Navbar.Brand>
+                <Navbar.Brand className="ml-5">
                   <h3 className="logo">T'shop</h3>
                 </Navbar.Brand>
               </LinkContainer>
@@ -130,13 +132,16 @@ function App() {
           }
         >
           <Nav className="flex-column text-white w-100 p-2">
-            <Nav.Item>
+            <Nav.Item style={{ color: 'black' }}>
               <strong>Categories</strong>
             </Nav.Item>
             {categories.map((category) => (
               <Nav.Item key={category}>
                 <LinkContainer
-                  to={`/search?category=${category}`}
+                  to={{
+                    pathname: '/search',
+                    search: `?category=${category}`,
+                  }}
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
@@ -158,6 +163,7 @@ function App() {
               <Route path="/placeorder" element={<Placeorder />} />
               <Route path="/order/:id" element={<OrderPage />}></Route>
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/search" element={<SearchPage />} />
               <Route
                 path="/orderhistory"
                 element={<OrderHistoryPage />}

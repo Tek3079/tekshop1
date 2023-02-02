@@ -1,8 +1,8 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 
 import axios from 'axios';
 import logger from 'use-reducer-logger';
-import { Row, Col, Carousel } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import Product from '../component/Product';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../component/LoadingBox';
@@ -39,34 +39,19 @@ function HomePage() {
     };
     fetchData();
   }, []);
-  const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
   return (
     <div>
       <Helmet>
         <title>Amazona</title>
       </Helmet>
-      <Carousel activeIndex={index} onSelect={handleSelect} variant="dark">
-        {products.map((product) => (
-          <Carousel.Item className="d-flex">
-            <img
-              className="d-block w-100"
-              src={product.image}
-              alt="First slide"
-            />
 
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-      </Carousel>
+      <div className="d-flex justify-content-center align-self-center bg-warning">
+        <h1 className="text-danger  sale">SALE!</h1>
+      </div>
+
       <h1>Featured Products</h1>
-      <div className="products">
+      <div className="products ">
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (

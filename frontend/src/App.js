@@ -25,6 +25,12 @@ import axios from 'axios';
 import SearchBox from './component/SearchBox';
 import { useEffect, useState } from 'react';
 import SearchPage from './pages/SearchPage';
+import ProtectedRoute from './component/ProtectedRoute';
+import AdminRoute from './component/AdminRoute';
+import DashboardScreen from './pages/DashboardScreen';
+import ProductsListPage from './pages/ProductsListPage';
+import ProductEditPage from './pages/ProductEditPage';
+import OrderListPage from './pages/OrderListPage';
 
 function App() {
   let sum = 0;
@@ -34,7 +40,7 @@ function App() {
 
   const signoutHandler = () => {
     dispatch(removeUser());
-    window.location.href = '/signin';
+    window.location.href = '/login';
   };
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -68,12 +74,13 @@ function App() {
             <Container>
               <Button
                 variant="dark"
+                className="m-2"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
               >
                 <i className="fas fa-bars"></i>
               </Button>
               <LinkContainer to="/">
-                <Navbar.Brand className="ml-5">
+                <Navbar.Brand className="m-2">
                   <h3 className="logo">T'shop</h3>
                 </Navbar.Brand>
               </LinkContainer>
@@ -119,6 +126,22 @@ function App() {
                       Sign In
                     </Link>
                   )}
+                  {user[0] && user[0].isAdmin && (
+                    <NavDropdown title="Admin" id="admin-nav-dropdown">
+                      <LinkContainer to="/admin/dashboard">
+                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/admin/products">
+                        <NavDropdown.Item>Products</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/admin/order">
+                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/admin/user">
+                        <NavDropdown.Item>Users</NavDropdown.Item>
+                      </LinkContainer>
+                    </NavDropdown>
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -161,12 +184,62 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/payment" element={<PaymentMethodScreen />} />
               <Route path="/placeorder" element={<Placeorder />} />
-              <Route path="/order/:id" element={<OrderPage />}></Route>
-              <Route path="/profile" element={<ProfilePage />} />
+              <Route
+                path="/order/:id"
+                element={
+                  <ProtectedRoute>
+                    <OrderPage />
+                  </ProtectedRoute>
+                }
+              ></Route>
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <ProfilePage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/search" element={<SearchPage />} />
               <Route
                 path="/orderhistory"
-                element={<OrderHistoryPage />}
+                element={
+                  <ProtectedRoute>
+                    <OrderHistoryPage />
+                  </ProtectedRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <AdminRoute>
+                    <DashboardScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/products"
+                element={
+                  <AdminRoute>
+                    <ProductsListPage />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/product/:id"
+                element={
+                  <AdminRoute>
+                    <ProductEditPage />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/order"
+                element={
+                  <AdminRoute>
+                    <OrderListPage />
+                  </AdminRoute>
+                }
               ></Route>
             </Routes>
           </Container>

@@ -49,7 +49,7 @@ const Cart = () => {
             {' '}
             {products?.map((item) => (
               <div className="d-flex  border-bottom" key={item._id}>
-                <Col>
+                <Col md={6}>
                   <Link to={`/product/${item.slug}`}>
                     {' '}
                     <img className="cartimage" src={item.image} alt="" />

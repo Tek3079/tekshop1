@@ -46,9 +46,9 @@ function HomePage() {
         <title>Amazona</title>
       </Helmet>
 
-      <div className="d-flex justify-content-center align-self-center bg-warning sale-div">
+      <Col className="d-flex justify-content-center align-self-center bg-warning sale-div">
         <h1 className="text-danger  sale">SALE!</h1>
-      </div>
+      </Col>
 
       <h1>Featured Products</h1>
       <div className="products ">

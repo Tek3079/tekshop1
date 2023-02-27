@@ -60,6 +60,9 @@ main {
   border-bottom: 0.2rem solid #f08000;
   color: #f08000;
 }
+.img-large {
+  max-width: 100%;
+}
 .img-thumbnail {
   height: 80px;
 }
@@ -107,5 +110,12 @@ main {
   .iconspan {
     top: -10px;
     left: 15px;
+  }
+  .sale {
+    letter-spacing: 30px;
+    font-size: 100px;
+    margin-left: 60px;
+    z-index: 1;
+    overflow: hidden;
   }
 }

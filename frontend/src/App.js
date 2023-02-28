@@ -31,6 +31,8 @@ import DashboardScreen from './pages/DashboardScreen';
 import ProductsListPage from './pages/ProductsListPage';
 import ProductEditPage from './pages/ProductEditPage';
 import OrderListPage from './pages/OrderListPage';
+import UserListPage from './pages/UserListPage';
+import UserEditPage from './pages/UserEditPage';
 
 function App() {
   let sum = 0;
@@ -238,6 +240,22 @@ function App() {
                 element={
                   <AdminRoute>
                     <OrderListPage />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/user"
+                element={
+                  <AdminRoute>
+                    <UserListPage />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/user/:id"
+                element={
+                  <AdminRoute>
+                    <UserEditPage />
                   </AdminRoute>
                 }
               ></Route>

@@ -13,7 +13,7 @@ const Product = ({ product }) => {
         <Link to={`/product/${product.slug}`}>
           <img
             src={product.image}
-            className="card-img-top"
+            className="card-img-top product-image"
             alt={product.name}
           />
         </Link>

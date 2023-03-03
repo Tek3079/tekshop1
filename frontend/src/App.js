@@ -33,6 +33,9 @@ import ProductEditPage from './pages/ProductEditPage';
 import OrderListPage from './pages/OrderListPage';
 import UserListPage from './pages/UserListPage';
 import UserEditPage from './pages/UserEditPage';
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 function App() {
   let sum = 0;
@@ -72,28 +75,31 @@ function App() {
       >
         <ToastContainer position="bottom-center" limit={1} />
         <header>
-          <Navbar bg="info" variant="dark" expand="lg">
+          <Navbar expand="lg">
             <Container>
-              <Button
-                variant="dark"
-                className="m-2"
-                onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
-              >
-                <i className="fas fa-bars"></i>
-              </Button>
-              <LinkContainer to="/">
-                <Navbar.Brand className="m-2">
-                  <h3 className="logo">T'shop</h3>
-                </Navbar.Brand>
-              </LinkContainer>
+              <div className="col-3 d-flex">
+                <Button
+                  variant="white"
+                  className="m-2 "
+                  onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+                >
+                  <i className="fas fa-bars h-50 "></i>
+                </Button>
+                <LinkContainer to="/">
+                  <Navbar.Brand className="m-2">
+                    <span className="logo"> सस्तो' </span>
+                    <span className="logo-1">shop</span>
+                  </Navbar.Brand>
+                </LinkContainer>
+              </div>
+              <SearchBox />
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <SearchBox />
+              <Navbar.Collapse id="basic-navbar-nav ">
                 <Nav className="me-auto  w-100  justify-content-end ">
                   <Link to="/cart" className="nav-link">
                     <div className="icon">
                       <ShoppingCartOutlinedIcon
-                        style={{ color: 'black' }}
+                        style={{ color: 'rgb(255, 173, 79)' }}
                         fontSize="large"
                       />
                       <p className="iconspan">
@@ -176,7 +182,7 @@ function App() {
           </Nav>
         </div>
         <main>
-          <Container className="mt-3">
+          <div className="mt-3 main-div">
             <Routes>
               <Route path="/product/:slug" element={<ProductPage />}></Route>
               <Route path="/" element={<HomePage />}></Route>
@@ -260,11 +266,98 @@ function App() {
                 }
               ></Route>
             </Routes>
-          </Container>
+          </div>
         </main>
 
-        <footer>
-          <div className="text-center">All rights reserved</div>
+        <footer className="mt-5  bg-light ">
+          <div className="d-flex container justify-content-around">
+            <div className="col-6 mt-2">
+              <span className="logo"> सस्तो' </span>
+              <span className="logo-1">shop</span>
+              <p className="m-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+            <div className="col-3">
+              <h4 className="display-6 fotter-heading">Categories</h4>
+              <Link
+                className="footer-link"
+                to={{
+                  pathname: '/search',
+                  search: '?category=Shirts',
+                }}
+              >
+                <li className="footer-li ">Home</li>
+              </Link>
+              <Link
+                className="footer-link"
+                to={{
+                  pathname: '/search',
+                  search: '?category=Shirts',
+                }}
+              >
+                <li className="footer-li ">Features</li>
+              </Link>
+              <Link
+                className="footer-link"
+                to={{
+                  pathname: '/search',
+                  search: '?category=Shirts',
+                }}
+              >
+                {' '}
+                <li className="footer-li ">Pricing</li>
+              </Link>{' '}
+              <Link
+                className="footer-link"
+                to={{
+                  pathname: '/search',
+                  search: '?category=Shirts',
+                }}
+              >
+                {' '}
+                <li className="footer-li ">Features</li>
+              </Link>
+              <Link
+                className="footer-link"
+                to={{
+                  pathname: '/search',
+                  search: '?category=Shirts',
+                }}
+              >
+                <li className="footer-li ">Pricing</li>
+              </Link>
+            </div>
+            <div className="col-3">
+              <h4 className="display-6 fotter-heading">Contact Us</h4>
+              <i className="fa fa-home fa-2x " aria-hidden="true">
+                {' '}
+              </i>{' '}
+              Monroe, OH, 45050, US
+              <br></br>
+              <i className="fa fa-envelope fa-2x" aria-hidden="true"></i>{' '}
+              t-shop@gmail.com
+              <br></br>
+              <i className="fa fa-phone fa-2x" aria-hidden="true"></i> +1
+              315-278-6984<br></br>
+              <i className="fa fa-fax fa-2x" aria-hidden="true"></i> +1
+              315-278-6984
+            </div>
+            <div className="d-flex m-5">
+              <FacebookRoundedIcon sx={{ fontSize: 50 }}></FacebookRoundedIcon>
+              <TwitterIcon sx={{ fontSize: 50 }}></TwitterIcon>
+              <InstagramIcon sx={{ fontSize: 50 }}></InstagramIcon>
+            </div>
+          </div>
+          <div className="text-center">
+            © 2021 सस्तो'shop, Inc. All rights reserved.
+          </div>
         </footer>
       </div>
     </BrowserRouter>

@@ -136,36 +136,13 @@ export default function SearchPage() {
         <title>Search Products</title>
       </Helmet>
       <Row>
-        <Col md={3}>
-          <h3>Department</h3>
-          <div>
-            <ul>
-              <li>
-                <Link
-                  className={'all' === category ? 'text-bold' : ''}
-                  to={getFilterUrl({ category: 'all' })}
-                >
-                  Any
-                </Link>
-              </li>
-              {categories.map((c) => (
-                <li key={c}>
-                  <Link
-                    className={c === category ? 'text-bold' : ''}
-                    to={getFilterUrl({ category: c })}
-                  >
-                    {c}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
+        <Col className="bg-gray side-category">
+          <div className="side-category-div mt-3">
             <h3>Price</h3>
             <ul>
               <li>
                 <Link
-                  className={'all' === price ? 'text-bold' : ''}
+                  className={'all' === price ? 'text-bold' : 'all'}
                   to={getFilterUrl({ price: 'all' })}
                 >
                   Any
@@ -175,7 +152,7 @@ export default function SearchPage() {
                 <li key={p.value}>
                   <Link
                     to={getFilterUrl({ price: p.value })}
-                    className={p.value === price ? 'text-bold' : ''}
+                    className={p.value === price ? 'text-bold' : 'all'}
                   >
                     {p.name}
                   </Link>
@@ -183,14 +160,17 @@ export default function SearchPage() {
               ))}
             </ul>
           </div>
-          <div>
+          <hr></hr>
+          <div className="side-category-div ">
             <h3>Avg. Customer Review</h3>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>
                   <Link
                     to={getFilterUrl({ rating: r.rating })}
-                    className={`${r.rating}` === `${rating}` ? 'text-bold' : ''}
+                    className={
+                      `${r.rating}` === `${rating}` ? 'text-bold' : 'all'
+                    }
                   >
                     <Rating caption={' & up'} rating={r.rating}></Rating>
                   </Link>
@@ -199,11 +179,35 @@ export default function SearchPage() {
               <li>
                 <Link
                   to={getFilterUrl({ rating: 'all' })}
-                  className={rating === 'all' ? 'text-bold' : ''}
+                  className={rating === 'all' ? 'text-bold' : 'all'}
                 >
                   <Rating caption={' & up'} rating={0}></Rating>
                 </Link>
               </li>
+            </ul>
+          </div>
+          <hr></hr>
+          <div className="side-category-div ">
+            <h3>Department</h3>
+            <ul>
+              <li>
+                <Link
+                  className={'all' === category ? 'text-bold' : 'all'}
+                  to={getFilterUrl({ category: 'all' })}
+                >
+                  Any
+                </Link>
+              </li>
+              {categories.map((c) => (
+                <li key={c}>
+                  <Link
+                    className={c === category ? 'text-bold' : 'all'}
+                    to={getFilterUrl({ category: c })}
+                  >
+                    {c}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </Col>
@@ -235,9 +239,10 @@ export default function SearchPage() {
                     ) : null}
                   </div>
                 </Col>
-                <Col className="text-end">
-                  Sort by{' '}
+
+                <Col className="text-end d-flex flex-row-reverse align-items-center">
                   <select
+                    className="form-select  w-50"
                     value={order}
                     onChange={(e) => {
                       navigate(getFilterUrl({ order: e.target.value }));
@@ -248,6 +253,7 @@ export default function SearchPage() {
                     <option value="highest">Price: High to Low</option>
                     <option value="toprated">Avg. Customer Reviews</option>
                   </select>
+                  Sort by &nbsp;
                 </Col>
               </Row>
               {products.length === 0 && (

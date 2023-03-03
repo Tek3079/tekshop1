@@ -6,7 +6,9 @@ import { isAuth, isAdmin } from '../utils.js';
 const productRouter = express.Router();
 
 productRouter.get('/', async (req, res) => {
-  const products = await Product.find();
+  const products = await Product.find({ rating: { $gte: 4.5 } })
+    .sort({ rating: -1 })
+    .limit(20);
   res.send(products);
 });
 productRouter.post(
@@ -68,7 +70,7 @@ productRouter.delete(
     }
   })
 );
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 6;
 
 productRouter.get(
   '/admin',

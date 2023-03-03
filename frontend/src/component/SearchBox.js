@@ -14,26 +14,23 @@ export default function SearchBox() {
   };
 
   return (
-    <Form className="d-flex me-auto" onSubmit={submitHandler}>
-      <InputGroup>
-        <FormControl
-          type="text"
-          name="q"
-          id="q"
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="search products..."
-          aria-label="Search Products"
-          aria-describedby="button-search"
-        ></FormControl>
-        <Button
-          variant="outline-primary"
-          className="btn btn-dark"
-          type="submit"
-          id="button-search"
-        >
-          <i className="fa fa-search"></i>
-        </Button>
-      </InputGroup>
-    </Form>
+    <div className="col-6">
+      <Form className="d-flex " onSubmit={submitHandler}>
+        <InputGroup>
+          <FormControl
+            type="text"
+            name="q"
+            id="q"
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="search products..."
+            aria-label="Search Products"
+            aria-describedby="button-search"
+          ></FormControl>
+          <Button variant="outline-warning" type="submit" id="button-search">
+            <i className="fa fa-search"></i>
+          </Button>
+        </InputGroup>
+      </Form>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { useNavigate } from 'react-router-dom';
+import { Col } from 'react-bootstrap';
 
 export default function SearchBox() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function SearchBox() {
   };
 
   return (
-    <div className="col-6">
+    <Col>
       <Form className="d-flex " onSubmit={submitHandler}>
         <InputGroup>
           <FormControl
@@ -31,6 +32,6 @@ export default function SearchBox() {
           </Button>
         </InputGroup>
       </Form>
-    </div>
+    </Col>
   );
 }

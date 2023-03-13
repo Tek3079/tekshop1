@@ -72,8 +72,8 @@ function HomePage() {
       </Col>
       <div className="text-center mt-5">
         <h1 className="display-6">Categories</h1>
-        <Col className="d-flex justify-content-around">
-          <div className="d-flex col-4 justify-content-center">
+        <Row className="d-flex justify-content-around">
+          <Col sm={6} lg={4} className="d-flex justify-content-center col-sm">
             <div className="  cat-span border border-primary align-items-center">
               <Link
                 to={{
@@ -90,8 +90,8 @@ function HomePage() {
                 alt="s"
               ></img>
             </div>
-          </div>
-          <div className="d-flex col-4 justify-content-center">
+          </Col>
+          <Col sm={6} lg={4} className="d-flex justify-content-center col-sm">
             <div className=" cat-span border border-danger align-items-center">
               <Link
                 to={{
@@ -108,8 +108,8 @@ function HomePage() {
                 alt="s"
               ></img>
             </div>
-          </div>
-          <div className="d-flex col-4 justify-content-center">
+          </Col>
+          <Col sm={6} lg={4} className="d-flex  justify-content-center col-sm">
             <div className="  cat-span border border-warning align-items-center">
               <Link
                 to={{
@@ -126,8 +126,8 @@ function HomePage() {
                 alt="s"
               ></img>
             </div>
-          </div>
-        </Col>
+          </Col>
+        </Row>
       </div>
       <div className="products text-center mt-5">
         <h1 className="display-6">Featured Products</h1>

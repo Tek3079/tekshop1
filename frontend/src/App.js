@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
-import { Container, Navbar, NavDropdown } from 'react-bootstrap';
+import { Col, Container, Navbar, NavDropdown, Row } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Cart from './pages/Cart';
@@ -86,7 +86,7 @@ function App() {
                   <i className="fas fa-bars h-50 "></i>
                 </Button>
                 <LinkContainer to="/">
-                  <Navbar.Brand className="m-2">
+                  <Navbar.Brand className=" col-sm-12 ">
                     <span className="logo"> सस्तो' </span>
                     <span className="logo-1">shop</span>
                   </Navbar.Brand>
@@ -270,8 +270,8 @@ function App() {
         </main>
 
         <footer className="mt-5  bg-light ">
-          <div className="d-flex container justify-content-around">
-            <div className="col-6 mt-2">
+          <Row>
+            <Col xs={12} md={6}>
               <span className="logo"> सस्तो' </span>
               <span className="logo-1">shop</span>
               <p className="m-3">
@@ -283,8 +283,8 @@ function App() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-            </div>
-            <div className="col-3">
+            </Col>
+            <Col xs={12} md={3}>
               <h4 className="display-6 fotter-heading">Categories</h4>
               <Link
                 className="footer-link"
@@ -333,8 +333,8 @@ function App() {
               >
                 <li className="footer-li ">Pricing</li>
               </Link>
-            </div>
-            <div className="col-3">
+            </Col>
+            <Col xs={12} md={3}>
               <h4 className="display-6 fotter-heading">Contact Us</h4>
               <i className="fa fa-home fa-2x " aria-hidden="true">
                 {' '}
@@ -348,13 +348,13 @@ function App() {
               315-278-6984<br></br>
               <i className="fa fa-fax fa-2x" aria-hidden="true"></i> +1
               315-278-6984
-            </div>
+            </Col>
             <div className="d-flex m-5">
               <FacebookRoundedIcon sx={{ fontSize: 50 }}></FacebookRoundedIcon>
               <TwitterIcon sx={{ fontSize: 50 }}></TwitterIcon>
               <InstagramIcon sx={{ fontSize: 50 }}></InstagramIcon>
             </div>
-          </div>
+          </Row>
           <div className="text-center">
             © 2021 सस्तो'shop, Inc. All rights reserved.
           </div>
